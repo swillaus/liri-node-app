@@ -2,17 +2,8 @@
 Wk 10 Homework
 
 
-<!-- Clearly state the problem the app is trying to solve (i.e. what is it doing and why) -->
-
-
-<!-- Give a high-level overview of how the app is organized -->
-
-
-<!-- Give start-to-finish instructions on how to run the app -->
-
-
 <!-- Include screenshots, gifs or videos of the app functioning -->
-
+https://drive.google.com/file/d/1WmaPpfU98WX7LfxUw6BykS4mGREZ5huV/view
 
 <!-- Contain a link to a deployed version of the app -->
 
