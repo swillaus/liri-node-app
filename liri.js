@@ -65,9 +65,24 @@ function SpotifySong(song) {
 
 
 // movie-this
-function OMDBMovie(movie) {
 
+function OMDBMovie(movieName) {
+  axios.get("http://www.omdbapi.com/?t=" + movieName + "&y=&plot=full&tomatoes=true&apikey=trilogy")
+    .then(function (response) {
+    var movieData = response.data;
+    var movie = [
+      "Title: " + movieData.Title,
+      "Year: " + movieData.Year,
+      "IMDB Rating: " + movieData.Ratings[0].Value,
+      "Rotten Tomoatoes Rating: " + movieData.Ratings[1].Value,
+      "Country: " + movieData.Country,
+      "Language: " + movieData.Language,
+      "Plot: " + movieData.Plot,
+      "Actors: " + movieData.Actors
+    ].join("\n");
 
+    console.log(movie);
+  });
 }
 
 
@@ -77,7 +92,7 @@ function OMDBMovie(movie) {
 
 
 // // Run the axios.get function...
-// axios.get("http://www.omdbapi.com/?t=" + movieName + "&y=&plot=full&tomatoes=true&apikey=trilogy")
+// axios.get()
 //   .then(function (response) {
 //     console.log(response.data)
 //   });
