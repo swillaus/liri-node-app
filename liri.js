@@ -35,13 +35,20 @@ function RunCommand(c, t) {
 
 // spotify-this-song
 
-function n(song) {
+function SpotifySong(song) {
   spotify.search({ type: 'track', query: song ? song : "The Sign" }, function (err, data) {
     if (err) {
       return console.log('Error occurred: ' + err);
     }
-    var songs = data.tracks.items;
-    console.log(songs[0].album.artists);
+    var songsData = data.tracks.items;
+    var songs = [
+      "Artist: " + songsData[0].album.artists[0].name,
+      "Song Name: " + songsData[0].name,
+      "Preview Link: " + songsData[0].preview_url,
+      "Album Name: " + songsData[0].album.name
+    ].join("\n");
+    
+    console.log(songs);
   });
 }
 
