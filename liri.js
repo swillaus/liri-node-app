@@ -4,7 +4,6 @@ var keys = require("./keys.js");
 var Spotify = require('node-spotify-api')
 var spotify = new Spotify(keys.spotify);
 
-
 // // // concert-this
 var axios = require("axios");
 var artist = "Led%20Zeppelin";
@@ -18,6 +17,8 @@ RunCommand(command, searchFor);
 
 function RunCommand(c, t) {
   switch (c) {
+    case 'concert-this':
+      return ConcertBand(t)
     case 'spotify-this-song':
       return SpotifySong(t)
     case 'movie-this':
@@ -25,12 +26,22 @@ function RunCommand(c, t) {
   }
 }
 
-// // Run the axios.get function...
-// axios.get("http://www.omdbapi.com/?t=" + movieName + "&y=&plot=full&tomatoes=true&apikey=trilogy")
-//   .then(function (response) {
-//     console.log(response.data)
-//   });
 
+// concert-this
+
+function ConcertBand(band) {
+  axios.get("https://rest.bandsintown.com/artists/" + band + "/events?app_id=codingbootcamp")
+    .then(function (response) {
+     
+      var BandDisplay = [
+        "Venue Name: " + response.data[0].venue.name,
+        "Location: " + response.data[0].venue.city,
+        "Date: " + response.data[0].datetime
+      ].join("\n");
+
+      console.log(BandDisplay);
+    });
+}
 
 
 // spotify-this-song
@@ -47,7 +58,7 @@ function SpotifySong(song) {
       "Preview Link: " + songsData[0].preview_url,
       "Album Name: " + songsData[0].album.name
     ].join("\n");
-    
+
     console.log(songs);
   });
 }
@@ -56,11 +67,18 @@ function SpotifySong(song) {
 // movie-this
 function OMDBMovie(movie) {
 
-  axios.get("http://www.omdbapi.com/?t=" + movie + "&y=&plot=full&tomatoes=true&apikey=trilogy")
-    .then(function (response) {
-      console.log(response.data)
-    });
+
 }
 
 
 // do-what-it-says
+
+
+
+
+// // Run the axios.get function...
+// axios.get("http://www.omdbapi.com/?t=" + movieName + "&y=&plot=full&tomatoes=true&apikey=trilogy")
+//   .then(function (response) {
+//     console.log(response.data)
+//   });
+
